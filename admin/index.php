@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>Movies admin panel</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../assets/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -42,74 +42,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="index.php">Movies admin panel</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="index.html">Login</a>
                 </li>
                 <li>
-                    <a href="services.html">Services</a>
+                    <a href="services.html">Logout</a>
                 </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="portfolio-1-col.html">1 Column Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="portfolio-item.html">Single Portfolio Item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="blog-home-1.html">Blog Home 1</a>
-                        </li>
-                        <li>
-                            <a href="blog-home-2.html">Blog Home 2</a>
-                        </li>
-                        <li>
-                            <a href="blog-post.html">Blog Post</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="full-width.html">Full Width Page</a>
-                        </li>
-                        <li class="active">
-                            <a href="sidebar.html">Sidebar Page</a>
-                        </li>
-                        <li>
-                            <a href="faq.html">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                        <li>
-                            <a href="pricing.html">Pricing Table</a>
-                        </li>
-                    </ul>
-                </li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -123,9 +67,6 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Sidebar Page
-                <small>Subheading</small>
-            </h1>
             <ol class="breadcrumb">
                 <li><a href="index.html">Home</a>
                 </li>
@@ -140,29 +81,16 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
             <div class="list-group">
-                <a href="index.html" class="list-group-item">Home</a>
-                <a href="about.html" class="list-group-item">About</a>
-                <a href="services.html" class="list-group-item">Services</a>
-                <a href="contact.html" class="list-group-item">Contact</a>
-                <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>
-                <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
-                <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
-                <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
-                <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
-                <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>
-                <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>
-                <a href="blog-post.html" class="list-group-item">Blog Post</a>
-                <a href="full-width.html" class="list-group-item">Full Width Page</a>
-                <a href="sidebar.html" class="list-group-item active">Sidebar Page</a>
-                <a href="faq.html" class="list-group-item">FAQ</a>
-                <a href="404.html" class="list-group-item">404</a>
-                <a href="pricing.html" class="list-group-item">Pricing Table</a>
+                <a href="index.php" class="list-group-item">Dashboard</a>
+                <a href="categoriesListing.php" class="list-group-item">Categories</a>
+                <a href="moviesListing.php" class="list-group-item">Movies</a>
+                <a href="reviewsListing.php" class="list-group-item">Reviews</a>
+                <a href="clientsListing.php" class="list-group-item">Clients</a>
+                <a href="administratorsListing.php" class="list-group-item">Administrators</a>
             </div>
         </div>
         <!-- Content Column -->
         <div class="col-md-9">
-            <h2>Section Heading</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
         </div>
     </div>
     <!-- /.row -->
@@ -173,7 +101,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Copyright &copy; Your Website 2016</p>
             </div>
         </div>
     </footer>
@@ -182,10 +110,10 @@
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="../assets/admin/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../assets/admin/js/bootstrap.min.js"></script>
 
 </body>
 
