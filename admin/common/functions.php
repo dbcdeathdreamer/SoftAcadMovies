@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * @param $path
+ */
+function redirect($path)
+{
+    header("Location: {$path}");
+    exit;
+}
+
+
+
 /**
  * @param $data
  * @return array
@@ -73,3 +85,35 @@ function getUsers($conn)
 
     return $users;
 }
+
+
+/**
+ * @param $username
+ * @param $conn
+ * @return array|null
+ */
+function getUserByUsername($username, $conn)
+{
+    $username = mysqli_real_escape_string($conn, $username);
+
+    $query = "
+        SELECT * FROM users
+        WHERE users.username = '{$username}'
+        LIMIT 1
+    ";
+
+    $queryResult = mysqli_query($conn, $query);
+
+    $result = null;
+    if ($queryResult) {
+        $result = mysqli_fetch_assoc($queryResult);
+    }
+    
+    
+    echo '<pre>';
+    var_dump(mysqli_error($conn)); 
+    echo '</pre>';
+    return $result;
+}
+
+
