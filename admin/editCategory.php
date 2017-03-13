@@ -1,4 +1,4 @@
-    <?php require_once 'common/header.php'; ?>
+<?php require_once 'common/header.php'; ?>
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
@@ -6,8 +6,11 @@
                 <li>
                     <a href="index.php">Home</a>
                 </li>
+                <li>
+                    <a href="categoriesListing.php">Categories</a>
+                </li>
                 <li class="active">
-                    Dashboard
+                    Edit Category
                 </li>
             </ol>
         </div>
@@ -27,5 +30,4 @@
     </div>
     <!-- /.row -->
 
-    <?php require_once 'common/footer.php'; ?>
-
+<?php require_once 'common/footer.php'; ?>

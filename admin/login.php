@@ -1,7 +1,8 @@
 <?php require_once 'common/header.php'; ?>
 <!-- Content Row -->
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             <form action="" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
@@ -15,6 +16,7 @@
                 <input type="submit" name="submit" value="Login" class="btn btn-default"/>
             </form>
         </div>
+        <div class="col-md-4"></div>
     </div>
 
 <!-- /.row -->

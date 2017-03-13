@@ -52,10 +52,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.html">Login</a>
+                    <a href="login.php">Login</a>
                 </li>
                 <li>
-                    <a href="services.html">Logout</a>
+                    <a href="logout.php">Logout</a>
                 </li>
 
             </ul>
@@ -68,14 +68,3 @@
 <!-- Page Content -->
 <div class="container">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <ol class="breadcrumb">
-                <li><a href="index.html">Home</a>
-                </li>
-                <li class="active">Sidebar Page</li>
-            </ol>
-        </div>
-    </div>
-    <!-- /.row -->
