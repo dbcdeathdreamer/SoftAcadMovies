@@ -37,6 +37,19 @@
             'name' => [],
             'description' => [],
         ];
+
+        if (isset($_POST['addCategory'])) {
+            $data =[
+                'name' => isset($_POST['name'])? trim(htmlspecialchars($_POST['name'])) : '' ,
+                'description' => isset($_POST['description'])? trim(htmlspecialchars($_POST['description'])) : '' ,
+            ];
+
+            createCategory($data, $conn);
+            redirect('categoriesListing.php');
+
+        }
+
+
         ?>
         <div class="row">
             <div class="col-md-4"></div>
@@ -56,7 +69,7 @@
                     </div>
                     <div class="form-group  <?php echo (!empty($errors['description']))? 'has-error': ''; ?>">
                         <label for="Description">Description</label>
-                        <textarea type="text" value="<?php echo $data['description']; ?>" class="form-control" name="name" placeholder="Description" id="name" /></textarea>
+                        <textarea type="text" value="<?php echo $data['description']; ?>" class="form-control" name="description" placeholder="Description" id="name" /></textarea>
                         <?php foreach($errors['description'] as $errorDescription) { ?>
                             <div class="alert alert-danger" role="alert" style="margin-top:10px;">
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -67,7 +80,7 @@
                         <?php //} ?>
                     </div>
 
-                    <input type="submit" class="btn btn-primary" name="addAdmin" value="Add Category">
+                    <input type="submit" class="btn btn-primary" name="addCategory" value="Add Category">
                 </form>
             </div>
             <div class="col-md-4"></div>

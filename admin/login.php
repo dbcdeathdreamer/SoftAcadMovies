@@ -1,5 +1,9 @@
 <?php require_once 'common/header.php'; ?>
 <?php
+if (isLoggedInAdmin()) {
+    redirect('index.php');
+}
+
 
 $data = [
     'username' => '',

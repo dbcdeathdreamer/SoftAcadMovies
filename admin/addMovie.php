@@ -41,6 +41,7 @@
                 'youtube_link' => '',
                 'language' => '',
                 'movies_categories_id' => '',
+                'category_id' => '',
 
             ];
 
@@ -58,11 +59,21 @@
                 'language' => [],
                 'movies_categories_id' => [],
             ];
+            $categories = getCategories($conn);
             ?>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <form action="" method="post">
+                        <div class="form-group  <?php echo (!empty($errors['movies_categories_id']))? 'has-error': ''; ?>">
+                            <select name="category_id" id="">
+                                <option value="">-- Select Movie Category --</option>
+                                <?php foreach($categories as $category) : ?>
+                                    <option <?php echo  ($data['category_id'] == $category['id'])? 'selected' : ''; ?> value="<?php echo $category['id'] ?>"><?php echo $category['title']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
                         <div class="form-group  <?php echo (!empty($errors['title']))? 'has-error': ''; ?>">
                             <label for="title">title</label>
                             <input type="text" value="<?php echo $data['title']; ?>" class="form-control" name="title" placeholder="Title" id="title" />
@@ -179,17 +190,6 @@
                                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                     <span class="sr-only">Error: </span>
                                     <?php echo $errorLanguage; ?>
-                                </div>
-                            <?php } ?>
-                            <?php //} ?>
-                        </div>
-                        <div class="form-group  <?php echo (!empty($errors['movies_categories_id']))? 'has-error': ''; ?>">
-                            <input type="text" value="<?php echo $data['movies_categories_id']; ?>" class="form-control" name="movies_categories_id" placeholder="movies_categories_id" id="movies_categories_id" />
-                            <?php foreach($errors['movies_categories_id'] as $errorMoviesCategoriesId) { ?>
-                                <div class="alert alert-danger" role="alert" style="margin-top:10px;">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                    <span class="sr-only">Error: </span>
-                                    <?php echo $errorMoviesCategoriesId; ?>
                                 </div>
                             <?php } ?>
                             <?php //} ?>

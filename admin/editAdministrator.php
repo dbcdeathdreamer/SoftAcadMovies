@@ -28,35 +28,43 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <?php
+           $id = (isset($_GET['id'])) ? $_GET['id'] : '';
+            if ((int)$id <= 0) {
+                redirect('administratorListing.php');
+            }
+
+            $user = getUserById($id, $conn);
+
+            if (empty($user)) {
+                redirect('administratorListing.php');
+            }
+
             $data =[
-                'username' => '',
-                'password' => '',
-                'email'    => '',
+                'id' => $user['id'],
+                'username' => $user['username'],
+                'email'    => $user['email'],
             ];
 
             $errors = [
                 'username' => [],
-                'password' => [],
                 'email'    => [],
             ];
 
 
-            if (isset($_POST['addAdmin'])) {
+            if (isset($_POST['editAdmin'])) {
+
                 $data =[
+                    'id' => $user['id'],
                     'username' => isset($_POST['username'])? htmlspecialchars(trim($_POST['username']), ENT_QUOTES, 'UTF-8'): '',
-                    'password' => isset($_POST['password'])? htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8'): '',
                     'email'    => isset($_POST['email'])? htmlspecialchars(trim($_POST['email']), ENT_QUOTES, 'UTF-8'): '',
                 ];
 
                 $errors = isValidAddAdministrator($data);
-
                 $flag = checkForErrors($errors);
 
                 if ($flag === true) {
-                    //Записваме стойността от полетата в базата данни
-                    $data['password'] = sha1($data['password']);
 
-                    insertAdministrator($data, $conn);
+                    updateAdministrator($data, $conn);
 
                     $_SESSION['flash'] = 'Записът беше записан в базата данни успешно.';
 
@@ -84,17 +92,7 @@
                             <?php } ?>
                             <?php //} ?>
                         </div>
-                        <div class="form-group  <?php echo (!empty($errors['password']))? 'has-error' : '' ?> ">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="password" />
-                            <?php foreach ($errors['password'] as $errorPassword) { ?>
-                                <div class="alert alert-danger" role="alert" style="margin-top:10px;">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                    <span class="sr-only">Error: </span>
-                                    <?php echo $errorPassword; ?>
-                                </div>
-                            <?php } ?>
-                        </div>
+
                         <div class="form-group <?php echo (!empty($errors['email']))? 'has-error' : '' ?> ">
                             <label for="email">Email</label>
                             <input type="email" value="<?php echo $data['email']; ?>" class="form-control" name="email" placeholder="email" id="email" />
@@ -108,7 +106,7 @@
                         </div>
 
 
-                        <input type="submit" class="btn btn-primary" name="addAdmin" value="Edit Administrator">
+                        <input type="submit" class="btn btn-primary" name="editAdmin" value="Edit Administrator">
                     </form>
                 </div>
                 <div class="col-md-4"></div>

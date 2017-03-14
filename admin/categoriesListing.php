@@ -38,16 +38,24 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <a href="editCategory.php?id="  class="btn btn-warning">Edit</a>
-                    <a href="deleteCategory.php?id=>"  class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
+            <?php $categories = getCategories($conn); 
+
+            foreach ($categories as $category) { ?>
+                <tr>
+                    <td><?php echo $category['id'] ?></td>
+                    <td><?php echo $category['title']; ?></td>
+                    <td><?php echo $category['description'] ?></td>
+                    <td>
+                        <a href="editCategory.php?id=<?php echo  $category['id']?>"  class="btn btn-warning">Edit</a>
+                        <a href="deleteCategory.php?id=<?php echo  $category['id']?>"  class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+            <?php } ?>
+
 
 
         </table>

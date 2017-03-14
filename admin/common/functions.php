@@ -125,4 +125,92 @@ function getUserByUsername($username, $conn)
     return $result;
 }
 
+function getUserById($id, $conn)
+{
+    $id = mysqli_real_escape_string($conn, $id);
+
+    $query = "
+        SELECT * FROM users
+        WHERE users.id = {$id};
+    ";
+
+    $resultset = mysqli_query($conn, $query);
+
+    if ($resultset) {
+        $result = mysqli_fetch_assoc($resultset);
+    }
+
+    return $result;
+}
+
+function deleteUserById($id, $conn)
+{
+    $id = mysqli_real_escape_string($conn, $id);
+    $query = "DELETE FROM users Where users.id = {$id}";
+
+    $result = mysqli_query($conn, $query);
+    return  mysqli_num_rows($result);
+}
+
+function updateAdministrator($data, $conn)
+{
+
+    $data['username'] = mysqli_real_escape_string($conn, $data['username']);
+    $data['email'] = mysqli_real_escape_string($conn, $data['email']);
+    $data['id']    = mysqli_real_escape_string($conn, $data['id']);
+
+    $query = "
+        UPDATE users
+        SET
+        `username` = '{$data['username']}',
+        `email`    = '{$data['email']}'
+        Where `id` = {$data['id']}
+     ";
+
+    $result = mysqli_query($conn, $query);
+    echo '<pre>';
+    var_dump(mysqli_error($conn)); 
+    echo '</pre>';
+    return mysqli_num_rows($result);
+}
+
+
+function createCategory($data, $conn)
+{
+    $name   = mysqli_real_escape_string($conn, $data['name']);
+    $description   = mysqli_real_escape_string($conn, $data['description']);
+
+
+    $query = "
+        INSERT INTO movies_categories
+        SET 
+        `title` = '{$name}',
+        `description` = '{$description}'
+    ";
+
+    mysqli_query($conn, $query);
+
+    echo '<pre>';
+    var_dump(mysqli_error($conn));
+    echo '</pre>';
+}
+
+function getCategories($conn)
+{
+    $query = "SELECT * FROM movies_categories";
+
+    $result = mysqli_query($conn, $query);
+
+    $users = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users[] = $row;
+    }
+
+
+    echo '<pre>';
+    var_dump(mysqli_error($conn));
+    echo '</pre>';
+
+    return $users;
+}
 
