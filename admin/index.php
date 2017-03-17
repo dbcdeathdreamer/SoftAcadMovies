@@ -1,3 +1,5 @@
+
+
     <?php require_once 'common/header.php'; ?>
     <?php if (!isLoggedInAdmin()) {
         redirect('login.php');
