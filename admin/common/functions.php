@@ -1,5 +1,12 @@
 <?php
 
+function __autoload($className)
+{
+    $path = __DIR__."/system/{$className}.php";
+
+    require_once $path;
+}
+
 function isLoggedInAdmin() {
     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) {
         return true;

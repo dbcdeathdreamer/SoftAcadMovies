@@ -1,19 +1,5 @@
 <?php session_start(); ?>
 
-<?php
-function __autoload($className)
-{
-    $path = __DIR__."/system/{$className}.php";
-
-    require_once $path;
-}
-
-
-$db = new DB();
-die;
-?>
-
-
 <?php require_once 'db.php'; ?>
 <?php require_once 'functions.php';?>
 

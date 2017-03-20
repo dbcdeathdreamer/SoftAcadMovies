@@ -7,6 +7,7 @@ if (!isLoggedInAdmin()) {
     redirect('login.php');
 }
 
+$db = DB::getInstance();
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 
@@ -14,14 +15,20 @@ if ((int)$id <= 0) {
     redirect('administratorsListing.php');
 }
 
-$user = getUserById($id, $conn);
+$where = [
+    'id' => $id
+];
+$user = $db->getOne('users', $where);
 
 if (empty($user)) {
     redirect('administratorsListing.php');
 }
 
 
-deleteUserById($id, $conn);
+$where = [
+    'id' => $id
+];
+$result = $db->delete('users', $where);
 
 redirect('administratorsListing.php');
 

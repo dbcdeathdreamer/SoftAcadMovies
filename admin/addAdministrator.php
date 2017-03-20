@@ -56,7 +56,8 @@
                 //Записваме стойността от полетата в базата данни
                 $data['password'] = sha1($data['password']);
 
-                insertAdministrator($data, $conn);
+                $db = DB::getInstance();
+                $db->insert('users', $data);
 
                 $_SESSION['flash'] = 'Записът беше записан в базата данни успешно.';
 

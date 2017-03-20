@@ -64,7 +64,9 @@
 
                 if ($flag === true) {
 
-                    updateAdministrator($data, $conn);
+
+                    $db = DB::getInstance();
+                    $db->update('users', $data, ['id' => $data['id']]);
 
                     $_SESSION['flash'] = 'Записът беше записан в базата данни успешно.';
 

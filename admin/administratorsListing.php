@@ -33,7 +33,10 @@
             }
         ?>
         
-        <?php $users = getUsers($conn); ?>
+       <?php
+            $db = DB::getInstance();
+            $users = $db->get('users');
+       ?>
 
         <table class="table">
             <tr>
