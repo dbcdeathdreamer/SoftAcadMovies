@@ -60,11 +60,56 @@
                 'movies_categories_id' => [],
             ];
             $categories = getCategories($conn);
+
+            if (isset($_POST['submit'])) {
+
+                $extensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+                if (isset($_FILES['cover_photo'])) {
+                    $file = $_FILES['cover_photo'];
+                    $ex = explode('.', $file['name']);
+                    $ext = strtolower(end($ex));
+                    if (!in_array($ext, $extensions)) {
+                        $errors['cover_photo'][] = 'Wrong file type';
+                    }
+
+                    if ($file['size'] > 2000000) {
+                        $errors['cover_photo'][] = 'File size is too big';
+                    }
+
+
+                    if (!is_dir(__DIR__.'/../uploads/movies')) {
+                        mkdir(__DIR__.'/../uploads/movies');
+                    }
+
+                    $newName = sha1(time()).'.'.$ext;
+
+
+
+                }
+
+
+                $aPostData['cover_photo'] = $newName;
+                if (empty($errors)) {
+                    //Записване в базата данни на името на снимката заедно с другата информация от POST
+                    move_uploaded_file($file['tmp_name'], __DIR__.'/../uploads/movies/'.$newName);
+                }
+
+
+
+
+                echo '<pre>';
+                var_dump($data, $file);
+                echo '</pre>';
+            }
+
+
+
             ?>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group  <?php echo (!empty($errors['movies_categories_id']))? 'has-error': ''; ?>">
                             <select name="category_id" id="">
                                 <option value="">-- Select Movie Category --</option>
@@ -159,8 +204,8 @@
                             <?php //} ?>
                         </div>
                         <div class="form-group  <?php echo (!empty($errors['cover_photo']))? 'has-error': ''; ?>">
-                            <label for="cover_photo">Cover_photo</label>
-                            <input type="text" value="<?php echo $data['cover_photo']; ?>" class="form-control" name="cover_photo" placeholder="cover_photo" id="cover_photo" />
+                            <label for="cover_photo">Cover Photo</label>
+                            <input type="file"  class="form-control" name="cover_photo"  id="cover_photo" />
                             <?php foreach($errors['cover_photo'] as $errorCoverPhoto) { ?>
                                 <div class="alert alert-danger" role="alert" style="margin-top:10px;">
                                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -196,7 +241,7 @@
                         </div>
 
 
-                        <input type="submit" class="btn btn-primary" name="addAdmin" value="Add Category">
+                        <input type="submit" class="btn btn-primary" name="submit" value="Add movie">
                     </form>
                 </div>
                 <div class="col-md-4"></div>

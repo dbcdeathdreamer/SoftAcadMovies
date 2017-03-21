@@ -178,8 +178,8 @@ class DB
     private function escape($data) {
 
         $escapeData = [];
-        foreach ($data as $value) {
-            $escapeData[] = mysqli_real_escape_string($this->connection, $value);
+        foreach ($data as $key => $value) {
+            $escapeData[$key] = mysqli_real_escape_string($this->connection, $value);
         }
 
         return $escapeData;
