@@ -48,7 +48,7 @@ class DB
 
 
     //Чрез този метод ще правим SELECT запитвания към базата данни
-    public function get($table, $where = [])
+    public function get($table, $where = [], $offset = -1, $limit = 5)
     {
         $query = "SELECT * FROM {$table}
         WHERE 1 
@@ -58,6 +58,10 @@ class DB
 
         foreach ($where as $key => $value) {
             $query.= " AND {$key} = '{$value}' ";
+        }
+
+        if ($offset >= 0) {
+            $query .= " LIMIT {$offset}, {$limit} ";
         }
 
 

@@ -34,8 +34,22 @@
         ?>
         
        <?php
+
+            $page = (isset($_GET['page']) && (int)$_GET['page'] > 0)? $_GET['page'] : 1;
+            $perPage = 2;
+            $offset  = ($page-1)*$perPage;
+            
+            
+            
             $db = DB::getInstance();
-            $users = $db->get('users');
+            $users = $db->get('users', [], $offset, $perPage);
+            $totalRows = count($db->get('users'));
+            
+    
+            $pagination = new Pagination();
+            $pagination->setPerPage($perPage);
+            $pagination->setTotalRows($totalRows);
+            $pagination->setBaseUrl('');
        ?>
 
         <table class="table">
@@ -55,6 +69,7 @@
                 </tr>
 
             <?php } ?>
+            <?php echo $pagination->create(); ?>
 
         </table>
 
