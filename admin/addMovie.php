@@ -65,6 +65,23 @@
 
                 $extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
+                $data =[
+                    'title' => isset($_POST['title'])? htmlspecialchars(trim($_POST['title']), ENT_QUOTES, 'UTF-8'): '',
+                    'description' => isset($_POST['description'])? htmlspecialchars(trim($_POST['description']), ENT_QUOTES, 'UTF-8'): '',
+                    'duration' => isset($_POST['duration'])? htmlspecialchars(trim($_POST['duration']), ENT_QUOTES, 'UTF-8'): '',
+                    'year' => isset($_POST['year'])? htmlspecialchars(trim($_POST['year']), ENT_QUOTES, 'UTF-8'): '',
+                    'genres' => isset($_POST['genres'])? htmlspecialchars(trim($_POST['genres']), ENT_QUOTES, 'UTF-8'): '',
+                    'director' => isset($_POST['director'])? htmlspecialchars(trim($_POST['director']), ENT_QUOTES, 'UTF-8'): '',
+                    'writers' => isset($_POST['writers'])? htmlspecialchars(trim($_POST['writers']), ENT_QUOTES, 'UTF-8'): '',
+                    'cast' => isset($_POST['cast'])? htmlspecialchars(trim($_POST['cast']), ENT_QUOTES, 'UTF-8'): '',
+                    'cover_photo' => isset($_POST['cover_photo'])? htmlspecialchars(trim($_POST['cover_photo']), ENT_QUOTES, 'UTF-8'): '',
+                    'youtube_link' => isset($_POST['youtube_link'])? htmlspecialchars(trim($_POST['youtube_link']), ENT_QUOTES, 'UTF-8'): '',
+                    'language' => isset($_POST['language'])? htmlspecialchars(trim($_POST['language']), ENT_QUOTES, 'UTF-8'): '',
+                    'movies_categories_id' => isset($_POST['movies_categories_id'])? htmlspecialchars(trim($_POST['movies_categories_id']), ENT_QUOTES, 'UTF-8'): '',
+                    'category_id' => isset($_POST['category_id'])? htmlspecialchars(trim($_POST['category_id']), ENT_QUOTES, 'UTF-8'): '',
+                ];
+
+
                 if (isset($_FILES['cover_photo'])) {
                     $file = $_FILES['cover_photo'];
                     $ex = explode('.', $file['name']);
