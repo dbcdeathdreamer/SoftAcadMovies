@@ -36,7 +36,7 @@
        <?php
 
             $page = (isset($_GET['page']) && (int)$_GET['page'] > 0)? $_GET['page'] : 1;
-            $perPage = 2;
+            $perPage = 5;
             $offset  = ($page-1)*$perPage;
             
             
@@ -47,9 +47,10 @@
             
     
             $pagination = new Pagination();
+
             $pagination->setPerPage($perPage);
             $pagination->setTotalRows($totalRows);
-            $pagination->setBaseUrl('');
+            $pagination->setBaseUrl('administratorsListing.php');
        ?>
 
         <table class="table">

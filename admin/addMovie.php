@@ -78,8 +78,7 @@
                     'youtube_link' => isset($_POST['youtube_link'])? htmlspecialchars(trim($_POST['youtube_link']), ENT_QUOTES, 'UTF-8'): '',
                     'language' => isset($_POST['language'])? htmlspecialchars(trim($_POST['language']), ENT_QUOTES, 'UTF-8'): '',
                     'movies_categories_id' => isset($_POST['movies_categories_id'])? htmlspecialchars(trim($_POST['movies_categories_id']), ENT_QUOTES, 'UTF-8'): '',
-                    'category_id' => isset($_POST['category_id'])? htmlspecialchars(trim($_POST['category_id']), ENT_QUOTES, 'UTF-8'): '',
-                ];
+                    ];
 
 
                 if (isset($_FILES['cover_photo'])) {
@@ -102,22 +101,17 @@
                     $newName = sha1(time()).'.'.$ext;
 
 
-
                 }
 
+                $data['cover_photo'] = $newName;
 
-                $aPostData['cover_photo'] = $newName;
-                if (empty($errors)) {
+
+                if (empty(array_filter($errors))) {
+                    $db = DB::getInstance();
+                    $db->insert('movies', $data);
                     //Записване в базата данни на името на снимката заедно с другата информация от POST
                     move_uploaded_file($file['tmp_name'], __DIR__.'/../uploads/movies/'.$newName);
                 }
-
-
-
-
-                echo '<pre>';
-                var_dump($data, $file);
-                echo '</pre>';
             }
 
 
@@ -128,10 +122,10 @@
                 <div class="col-md-4">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group  <?php echo (!empty($errors['movies_categories_id']))? 'has-error': ''; ?>">
-                            <select name="category_id" id="">
+                            <select name="movies_categories_id" id="">
                                 <option value="">-- Select Movie Category --</option>
                                 <?php foreach($categories as $category) : ?>
-                                    <option <?php echo  ($data['category_id'] == $category['id'])? 'selected' : ''; ?> value="<?php echo $category['id'] ?>"><?php echo $category['title']; ?></option>
+                                    <option <?php echo  ($data['movies_categories_id'] == $category['id'])? 'selected' : ''; ?> value="<?php echo $category['id'] ?>"><?php echo $category['title']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

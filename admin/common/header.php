@@ -1,5 +1,8 @@
 <?php session_start(); ?>
 
+<?php DEFINE('MOVIES_PICS_URL', '../uploads/movies') ?>
+
+
 <?php require_once 'db.php'; ?>
 <?php require_once 'functions.php';?>
 
