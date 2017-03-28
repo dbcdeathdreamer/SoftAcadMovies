@@ -4,7 +4,8 @@
 
 
 <?php require_once 'db.php'; ?>
-<?php require_once 'functions.php';?>
+<?php require_once __DIR__.'/../../common/system/functions.php';?>
+
 
 <!DOCTYPE html>
 <html lang="en">

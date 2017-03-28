@@ -38,12 +38,11 @@
             $page = (isset($_GET['page']) && (int)$_GET['page'] > 0)? $_GET['page'] : 1;
             $perPage = 5;
             $offset  = ($page-1)*$perPage;
-            
-            
-            
-            $db = DB::getInstance();
-            $users = $db->get('users', [], $offset, $perPage);
-            $totalRows = count($db->get('users'));
+
+            $collection = new UserCollection();
+            $users = $collection->get([], $offset, $perPage);
+
+            $totalRows = count($collection->get());
             
     
             $pagination = new Pagination();
@@ -61,11 +60,11 @@
             </tr>
             <?php foreach($users as $user) { ?>
                 <tr>
-                    <td><?php echo $user['username']; ?></td>
-                    <td><?php echo $user['email']; ?></td>
+                    <td><?php echo $user->getUsername(); ?></td>
+                    <td><?php echo $user->getEmail(); ?></td>
                     <td >
-                        <a href="editAdministrator.php?id=<?php echo $user['id']; ?>"  class="btn btn-warning">Edit</a>
-                        <a href="deleteAdministrator.php?id=<?php echo $user['id']; ?>"  class="btn btn-danger">Delete</a>
+                        <a href="editAdministrator.php?id=<?php echo $user->getId(); ?>"  class="btn btn-warning">Edit</a>
+                        <a href="deleteAdministrator.php?id=<?php echo $user->getId(); ?>"  class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
 
