@@ -5,7 +5,7 @@ class MoviesCategoriesCollection extends Collection
     protected $table = 'movies_categories';
     protected $entity = 'MoviesCategoriesEntity';
 
-    public function save()
+    public function save($data)
     {
 
     }

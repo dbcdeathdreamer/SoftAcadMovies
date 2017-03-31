@@ -4,9 +4,9 @@ abstract class Collection {
 
     protected $entity = 'Entity';
     protected $table  = 'Table';
-    protected $db     = 'DB';
+    protected $db;
 
-    abstract public function save();
+    abstract public function save($data);
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ abstract class Collection {
         WHERE 1
         ";
 
-        $where = $this->escape($where);
+        $where = $this->db->escape($where);
 
         foreach ($where as $key => $value) {
             $query.= " AND {$key} = '{$value}' ";
@@ -41,16 +41,24 @@ abstract class Collection {
         return $entity->init($row);;
     }
 
-    public function get($where = [], $offset = -1, $limit = 5)
+    public function get($where = [], $offset = -1, $limit = 5, $like = [], $order = '')
     {
         $query = "SELECT * FROM {$this->table}
         WHERE 1 
         ";
 
-        $where = $this->escape($where);
+        $where = $this->db->escape($where);
 
         foreach ($where as $key => $value) {
             $query.= " AND {$key} = '{$value}' ";
+        }
+
+        if (!empty($like)) {
+            $query.= " AND {$like[0]} LIKE '%{$like[1]}%' ";
+        }
+
+        if ($order != '') {
+            $query .= " ORDER BY  '{$order}' ";
         }
 
         if ($offset >= 0) {
@@ -75,29 +83,77 @@ abstract class Collection {
         return $rows;
     }
 
-    public function insert()
+    public function insert($data)
     {
+        $query = "INSERT INTO {$this->table} SET";
 
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function delete()
-    {
-
-    }
-
-    protected function escape($data) {
-
-        $escapeData = [];
+        $data = $this->db->escape($data);
+        $i = 0;
         foreach ($data as $key => $value) {
-            $escapeData[$key] = mysqli_real_escape_string($this->connection, $value);
+            ++$i;
+            if ($i == count($data)) {
+                $query.= " {$key} = '{$value}'  ";
+            } else {
+                $query.= " {$key} = '{$value}',  ";
+            }
         }
 
-        return $escapeData;
+        $result =  $this->db->query($query);
+
+        if (!$result) {
+            $this->db->error();
+        }
+
+        return $this->db->affected_rows();
     }
+
+
+    public function update($data, $where = [])
+    {
+        $query = "UPDATE {$this->table} SET";
+
+        $data = $this->db->escape($data);
+        $where = $this->db->escape($where);
+        $i = 0;
+        foreach ($data as $key => $value) {
+            ++$i;
+            if ($i == count($data)) {
+                $query.= " {$key} = '{$value}'  ";
+            } else {
+                $query.= " {$key} = '{$value}',  ";
+            }
+        }
+        $query .= " WHERE 1 ";
+        foreach ($where as $key => $value) {
+            $query .= " AND {$key} = '{$value}' ";
+        }
+
+        $result = $this->db->query($query);
+
+        if (!$result) {
+            $this->db->error();
+        }
+
+        return $this->db->affected_rows();
+    }
+
+    public function delete($where = [])
+    {
+        $query = "DELETE FROM {$this->table} WHERE 1";
+
+        $where = $this->db->escape($where);
+        foreach ($where as $key => $value) {
+            $query.= " AND {$key} = '{$value}'";
+        }
+
+        $result = $this->db->query($query);
+        if (!$result) {
+            $this->db->error();
+        }
+
+        return $this->db->affected_rows();
+    }
+
+
 
 }

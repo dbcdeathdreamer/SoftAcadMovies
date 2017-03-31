@@ -57,4 +57,19 @@ class Database
     public function error() {
         die(mysqli_error($this->connection));
     }
+
+    public function affected_rows()
+    {
+        return mysqli_affected_rows($this->connection);
+    }
+
+    public function escape($data) {
+
+        $escapeData = [];
+        foreach ($data as $key => $value) {
+            $escapeData[$key] = mysqli_real_escape_string($this->connection, $value);
+        }
+
+        return $escapeData;
+    }
 }

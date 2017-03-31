@@ -8,9 +8,7 @@ class UserEntity extends Entity{
     protected $password;
     protected $email;
 
-    public function save() {
 
-    }
 
 
     /**
