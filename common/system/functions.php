@@ -1,18 +1,5 @@
 <?php
 
-function __autoload($className)
-{
-    if (strpos($className, 'Entity') > 0) {
-        $path = __DIR__."/../models/entities/{$className}.php";
-    } elseif (strpos($className, 'Collection') > 0) {
-        $path = __DIR__."/../models/collections/{$className}.php";
-    } else {
-        $path = __DIR__."/{$className}.php";
-    }
-
-    require_once $path;
-}
-
 function isLoggedInAdmin() {
     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) {
         return true;
