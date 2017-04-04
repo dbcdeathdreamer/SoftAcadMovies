@@ -5,6 +5,9 @@ class AdministratorsController extends Controller
 
     public function index()
     {
+        if (!isLoggedInAdmin()) {
+            redirect('index.php?c=login&m=login');
+        }
 
         $page = (isset($_GET['page']) && (int)$_GET['page'] > 0)? $_GET['page'] : 1;
         $perPage = 5;
@@ -20,7 +23,7 @@ class AdministratorsController extends Controller
 
         $pagination->setPerPage($perPage);
         $pagination->setTotalRows($totalRows);
-        $pagination->setBaseUrl('administratorsListing.php');
+        $pagination->setBaseUrl('index.php?c=administrators');
 
         $data = [
             'users'      => $users,

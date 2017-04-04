@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    DEFINE('MOVIES_PICS_URL', '../uploads/movies');
+
+    require_once __DIR__.'/../common/system/functions.php';
+
     function __autoload($className)
     {
         if (strpos($className, 'Entity') > 0) {

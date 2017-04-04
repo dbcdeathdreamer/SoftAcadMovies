@@ -1,8 +1,3 @@
-<?php session_start(); ?>
-
-<?php DEFINE('MOVIES_PICS_URL', '../uploads/movies') ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 

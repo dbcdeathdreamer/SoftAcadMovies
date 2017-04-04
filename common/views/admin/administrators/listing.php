@@ -19,6 +19,7 @@
     <!-- Sidebar Column -->
     <div class="col-md-3">
         <?php require_once 'common/nav.php'; ?>
+
     </div>
     <!-- Content Column -->
     <div class="col-md-9">
