@@ -100,7 +100,7 @@
                         </td>
                         <td><?php echo $movie->getYoutubeLink(); ?></td>
                         <td><?php echo $movie->getLanguage(); ?></td>
-                        <td><?php echo $movie->getMoviesCategoriesId(); ?></td>
+                        <td><?php echo $movie->getCategoryTitle(); ?></td>
 
                         <td>
                             <a href="movieImages.php?id=<?php echo $movie->getId(); ?>"  class="btn btn-warning">Movie Images</a>

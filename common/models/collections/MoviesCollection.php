@@ -14,7 +14,7 @@ class MoviesCollection extends Collection
 
     public function get($where = [], $offset = -1, $limit = 5, $like = [], $order = '')
     {
-        $query = "SELECT  m.*,  mc.id as category_id, mc.title 
+        $query = "SELECT  m.*, mc.title as category_title
         FROM {$this->table}
         Left JOIN movies_categories mc ON mc.id = m.movies_categories_id
         WHERE 1 
@@ -27,7 +27,7 @@ class MoviesCollection extends Collection
         }
 
         if (!empty($like)) {
-            $query.= " AND {$like[0]} LIKE '%{$like[1]}%' ";
+            $query.= " AND m.{$like[0]} LIKE '%{$like[1]}%' ";
         }
 
         if ($order != '') {

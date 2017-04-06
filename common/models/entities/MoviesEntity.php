@@ -17,6 +17,24 @@ class MoviesEntity extends Entity
     protected $youtube_link;
     protected $language;
     protected $movies_categories_id;
+    protected $category_title;
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryTitle()
+    {
+        return $this->category_title;
+    }
+
+    /**
+     * @param mixed $category_title
+     */
+    public function setCategoryTitle($category_title)
+    {
+        $this->category_title = $category_title;
+    }
+
 
     /**
      * @return mixed

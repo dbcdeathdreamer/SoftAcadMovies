@@ -48,13 +48,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isLoggedInAdmin()) { ?>
-                    <li><a href=""><?php echo $_SESSION['user']['username']; ?></a></li>
+                    <li><a href="">
+                            <?php $oUser = $_SESSION['user']; ?>
+                            <?php echo $oUser->getUsername(); ?>
+                        </a></li>
                     <li>
-                        <a href="logout.php">Logout</a>
+                        <a href="index.php?c=login&m=logout">Logout</a>
                     </li>
                 <?php } else { ?>
                     <li>
-                        <a href="login.php">Login</a>
+                        <a href="index.php?c=login&m=login">Login</a>
                     </li>
                <?php } ?>
 
