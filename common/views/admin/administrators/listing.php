@@ -23,7 +23,7 @@
     </div>
     <!-- Content Column -->
     <div class="col-md-9">
-        <a href="addAdministrator.php"  class="btn btn-info pull-right">Create new Admin</a>
+        <a href="index.php?c=administrators&m=create"  class="btn btn-info pull-right">Create new Admin</a>
         <?php
         if (isset($_SESSION['flash']) && $_SESSION['flash'] != '') {
             echo $_SESSION['flash'];
@@ -42,8 +42,8 @@
                     <td><?php echo $user->getUsername(); ?></td>
                     <td><?php echo $user->getEmail(); ?></td>
                     <td >
-                        <a href="editAdministrator.php?id=<?php echo $user->getId(); ?>"  class="btn btn-warning">Edit</a>
-                        <a href="deleteAdministrator.php?id=<?php echo $user->getId(); ?>"  class="btn btn-danger">Delete</a>
+                        <a href="index.php?c=administrators&m=update&id=<?php echo $user->getId(); ?>"  class="btn btn-warning">Edit</a>
+                        <a href="index.php?c=administrators&m=delete&id=<?php echo $user->getId(); ?>"  class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
 

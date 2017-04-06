@@ -53,7 +53,7 @@
             </form>
 
 
-            <a href="addMovie.php"  class="btn btn-info pull-right">Create Movie</a>
+            <a href="index.php?c=movies&m=create"  class="btn btn-info pull-right">Create Movie</a>
             <?php
             if (isset($_SESSION['flash']) && $_SESSION['flash'] != '') {
                 echo $_SESSION['flash'];
@@ -89,7 +89,14 @@
                         <td><?php echo $movie->getDescription(); ?></td>
                         <td><?php echo $movie->getDuration(); ?></td>
                         <td><?php echo $movie->getYear(); ?></td>
-                        <td><?php echo $movie->getGenres(); ?></td>
+                        <td>
+                            <?php
+                            $genres = unserialize($movie->getGenres());
+                            foreach ($genres as $genre) {
+                                echo $genre.'<br/>';
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $movie->getDirector(); ?></td>
                         <td><?php echo $movie->getWriters(); ?></td>
                         <td><?php echo $movie->getCast(); ?></td>
@@ -103,9 +110,9 @@
                         <td><?php echo $movie->getCategoryTitle(); ?></td>
 
                         <td>
-                            <a href="movieImages.php?id=<?php echo $movie->getId(); ?>"  class="btn btn-warning">Movie Images</a>
-                            <a href="editMovie.php?id="  class="btn btn-warning">Edit</a>
-                            <a href="deleteMovie.php?id=>"  class="btn btn-danger">Delete</a>
+                            <a href="index.php?c=movies&m=movieImages&id=<?php echo $movie->getId(); ?>"  class="btn btn-warning">Movie Images</a>
+                            <a href="index.php?c=movies&m=update&id=<?php echo $movie->getId(); ?>"  class="btn btn-warning">Edit</a>
+                            <a href="index.php?c=movies&m=delete&id=<?php echo $movie->getId(); ?>"  class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

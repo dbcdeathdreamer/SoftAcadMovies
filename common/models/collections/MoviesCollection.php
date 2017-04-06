@@ -2,20 +2,50 @@
 
 class MoviesCollection extends Collection
 {
-    protected $table = 'movies m';
+    protected $table = 'movies';
     protected $entity = 'MoviesEntity';
 
 
-    public function save($data)
+    public function save($object)
     {
-        // TODO: Implement save() method.
+        /* @var $object MoviesEntity */
+        $data = [
+            'id'            => $object->getId(),
+            'title'         => $object->getTitle(),
+            'description'   => $object->getDescription(),
+            'duration'      => $object->getDuration(),
+            'year'          => $object->getYear(),
+            'genres'        => $object->getGenres(),
+            'director'      => $object->getDirector(),
+            'writers'       => $object->getWriters(),
+            'cast'          => $object->getCast(),
+            'rating'        => $object->getRating(),
+            'cover_photo'   => $object->getCoverPhoto(),
+            'youtube_link'  => $object->getYoutubeLink(),
+            'language'      => $object->getLanguage(),
+            'movies_categories_id'  => $object->getMoviesCategoriesId(),
+        ];
+
+        if (is_null($object->getId())) {
+            //Insert new record
+            $result = $this->insert($data);
+        } else {
+            //Update data
+            $where = [
+                'id' => $object->getId(),
+            ];
+
+            $result = $this->update($data, $where);
+        }
+
+        return $result;
     }
 
 
     public function get($where = [], $offset = -1, $limit = 5, $like = [], $order = '')
     {
-        $query = "SELECT  m.*, mc.title as category_title
-        FROM {$this->table}
+        $query = "SELECT  m.*, mc.title as category_title 
+        FROM {$this->table} m
         Left JOIN movies_categories mc ON mc.id = m.movies_categories_id
         WHERE 1 
         ";

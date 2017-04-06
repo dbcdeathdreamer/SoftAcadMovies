@@ -83,7 +83,7 @@ abstract class Collection {
         return $rows;
     }
 
-    public function insert($data)
+    protected function insert($data)
     {
         $query = "INSERT INTO {$this->table} SET";
 
@@ -108,7 +108,7 @@ abstract class Collection {
     }
 
 
-    public function update($data, $where = [])
+    protected function update($data, $where = [])
     {
         $query = "UPDATE {$this->table} SET";
 

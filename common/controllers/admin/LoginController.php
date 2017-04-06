@@ -60,8 +60,8 @@ class LoginController extends Controller
             }
 
         }
-        
-        
+
+        $data['error'] = $error;
         
         $this->loadView('login/login', $data);
     }
