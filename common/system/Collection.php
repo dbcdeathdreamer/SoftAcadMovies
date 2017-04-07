@@ -38,7 +38,7 @@ abstract class Collection {
         $row = $this->db->translate($result);
         $entity = new $this->entity();
 
-        return $entity->init($row);;
+        return $entity->init($row);
     }
 
     public function get($where = [], $offset = -1, $limit = 5, $like = [], $order = '')
